@@ -1,13 +1,37 @@
-/* 
+//Prototype Refactor
 
-Prototype Refactor
+class GameObject{
+    constructor(item){
+      this.createdAt = item.createdAt;
+      this.dimensions = item.dimensions; 
+    }
+    destroy(){
+      return `${this.name} was removed from the game.`;
+    }
+}
 
-1. Copy and paste your code or the solution from yesterday
+class CharacterStats extends GameObject{
+    constructor(character){
+      super(character);
+      this.healthPoints = character.healthPoints;
+      this.name = character.name;
+    }
+    takeDamage(){
+      return `${this.name} took damage` ;
+    }
+}
 
-2. Your goal is to refactor all of this code to use ES6 Classes. 
-The console.log() statements should still return what is expected of them.
-
-*/
+class Humanoid extends CharacterStats{
+    constructor(humanoidChar){
+      super(humanoidChar);
+      this.team = humanoidChar.team;
+      this.weapons = humanoidChar.weapons;
+      this.language = humanoidChar.language;
+    }
+    greet(){
+      return `${this.name} offers a greeting in ${this.language}`;
+    }
+}
 const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
